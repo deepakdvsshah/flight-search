@@ -57,7 +57,7 @@ export class SearchComponent implements OnInit {
     const flightSearch = {
       origin: this.departureAirportCode.value,
       departureDate: null,
-      oneWay: true,
+      oneWay: false,
       duration: null,
       nonStop: true,
       maxPrice: null,

@@ -1,0 +1,11 @@
+<div>
+  <flight-search-search-summary [searchFilter]="searchFilter" *ngIf="!editMode" (editClick)="handleEditClick()">
+  </flight-search-search-summary>
+  <mat-card *ngIf="editMode" class="edit-search">
+    <mat-card-content>
+      <flight-search-search [searchFilter]="searchFilter" [showClose]="true" (searchClick)="handleSearchClick($event)"
+        (closeClick)="handleCloseClick()"></flight-search-search>
+    </mat-card-content>
+  </mat-card>
+  <flight-search-flight-list [flightLists]="searchResult$ |async"></flight-search-flight-list>
+</div>

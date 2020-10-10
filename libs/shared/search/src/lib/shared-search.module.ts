@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SearchComponent } from './search/search.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
+import { SearchSummaryComponent } from './search-summary/search-summary.component';
+import { FlightListComponent } from './flight-list/flight-list.component';
 import { NgxsModule } from '@ngxs/store';
 import { FlightSearchState } from './+state/search.state';
 import { MaterialModule } from './material.module';
@@ -11,19 +14,20 @@ import { AuthenticationServiceService } from './authentication-service.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './token-interceptor';
 import { FlightDestinationsService } from '@openapi/flightSearch';
+import { searchRoutes } from './search.routs';
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule, FormsModule, ReactiveFormsModule, HttpClientModule,
-    RouterModule.forChild([
-      { path: '', pathMatch: 'full', component: SearchComponent }
-    ]), NgxsModule.forFeature([FlightSearchState]),
+    RouterModule.forChild(searchRoutes),
+    NgxsModule.forFeature([FlightSearchState]),
   ],
-  declarations: [SearchComponent],
+  declarations: [SearchComponent, SearchResultsComponent, SearchSummaryComponent, FlightListComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, ,
     AuthenticationServiceService, FlightDestinationsService
-  ]
+  ],
+  exports: [SearchComponent]
 })
 export class SharedSearchModule { }

@@ -1,0 +1,30 @@
+<mat-card class="search-summary mat-subheading-2">
+  <div fxLayout.gt-xs="row" fxLayout.xs="column">
+    <div fxFlex.gt-xs="30%">
+      <div class="summary-locations">
+        <span>{{ searchFilter.departureAirportCode }}</span>
+        <mat-icon class="summary-locations-icon">import_export</mat-icon>
+        <span>{{ searchFilter.returnAirportCode }}</span>
+      </div>
+    </div>
+    <div fxFlex.gt-xs="30%">
+      <div class="summary-departtime">
+        <span><strong>Departure</strong></span>
+        <div>{{ searchFilter.departureDate  }}</div>
+      </div>
+    </div>
+    <div fxFlex.gt-xs="30%">
+      <div class="summary-returntime">
+        <span><strong>Return</strong></span>
+        <div>{{ searchFilter.returnDate  }}</div>
+      </div>
+    </div>
+    <div fxFlex.gt-xs="10%">
+      <div class="summary-editsearch">
+        <button mat-mini-fab (click)="handleEdit()">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</mat-card>
