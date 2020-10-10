@@ -43,6 +43,7 @@
     "@ngxs/devtools-plugin": "^3.7.0",
     "@ngxs/store": "^3.7.0",
     "@nrwl/angular": "10.3.0",
+    "moment": "^2.29.1",
     "rxjs": "~6.5.5",
     "zone.js": "^0.10.2"
   },

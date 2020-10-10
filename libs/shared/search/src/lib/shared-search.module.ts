@@ -15,11 +15,11 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './token-interceptor';
 import { FlightDestinationsService } from '@openapi/flightSearch';
 import { searchRoutes } from './search.routs';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule, FormsModule, ReactiveFormsModule, HttpClientModule,
+    MaterialModule, FormsModule, ReactiveFormsModule, HttpClientModule, FlexLayoutModule,
     RouterModule.forChild(searchRoutes),
     NgxsModule.forFeature([FlightSearchState]),
   ],

@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
 import { GetFlightList } from '../+state/search.action';
 import { AuthenticationServiceService } from '../authentication-service.service';
-
+import * as moment from 'moment';
 import { ISearchFilter } from '../model/search-filter.model';
 
 @Component({
@@ -40,7 +40,7 @@ export class SearchComponent implements OnInit {
     this.returnDate = new FormControl(this.searchFilter ? new Date(this.searchFilter.returnDate) : '',
       [Validators.required]);
 
-
+    this.defaultMinDate = moment().toDate();
     this.searchForm = new FormGroup({
       departureAirportCode: this.departureAirportCode,
       returnAirportCode: this.returnAirportCode,
@@ -56,9 +56,9 @@ export class SearchComponent implements OnInit {
   handleSearch(formValues: any) {
     const flightSearch = {
       origin: this.departureAirportCode.value,
-      departureDate: null,
+      departureDate: moment(this.departureDate.value).format('YYYY-MM-DD'),
       oneWay: false,
-      duration: null,
+      duration: moment(this.returnDate.value).diff(moment(this.departureDate.value), 'days'),
       nonStop: true,
       maxPrice: null,
       viewBy: null

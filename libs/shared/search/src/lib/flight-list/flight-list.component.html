@@ -3,16 +3,21 @@
     <mat-card>
       <div flLayout="column">
         <div fxLayout.gt-sm="row" fxLayout.sm="column" fxLayout.xs="column">
-          <div fxFlex.gt-sm="50%">
+          <div fxFlex.gt-sm="40%">
             <img [src]="flightList.AirlineLogoAddress" />
             <span class="mat-subheading-2">{{flightList.type}}</span>
+            <div class="summary-locations">
+              <span>{{ flightList.origin }}</span>
+              <mat-icon class="summary-locations-icon">import_export</mat-icon>
+              <span>{{ flightList.destination }}</span>
+            </div>
           </div>
-          <div fxFlex.gt-sm="50%" fxFlex.sm="1" fxFlex.xs="1" fxLayoutAlign.gt-sm="end">
+          <div fxFlex.gt-sm="40%" fxFlex.sm="1" fxFlex.xs="1" fxLayoutAlign.gt-sm="end">
             <span class="mat-subheading-2">{{flightList.price.total | currency}}</span>
           </div>
         </div>
         <div fxLayout.gt-sm="row" fxLayout.sm="column" fxLayout.xs="column">
-          <div fxFlex.gt-sm="50%">
+          <div fxFlex.gt-sm="40%">
             <div>
               <strong>Departure Date</strong>
             </div>

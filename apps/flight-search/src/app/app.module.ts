@@ -11,10 +11,11 @@ import { MaterialModule } from '@flight-search/shared/search';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { SharedSearchModule } from '@flight-search/shared/search'
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { LayoutModule } from '@angular/cdk/layout';
 @NgModule({
   declarations: [AppComponent, HeaderComponent, HomeComponent],
   imports: [BrowserModule,
-    NgxsModule.forRoot([]), FlexLayoutModule,
+    NgxsModule.forRoot([]),
     MaterialModule,
     NgxsReduxDevtoolsPluginModule.forRoot(),
     RouterModule.forRoot(appRoutes, { initialNavigation: 'enabled', useHash: true }),
