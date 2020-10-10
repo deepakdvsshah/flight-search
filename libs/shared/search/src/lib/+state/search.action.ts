@@ -7,5 +7,6 @@ export enum SearchFlightActionType {
 export class GetFlightList {
     static readonly type = SearchFlightActionType.GET_FLIGHT_LIST;
     constructor(public payload: any) {
+
     }
 }

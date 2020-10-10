@@ -1,5 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngxs/store';
+import { GetFlightList } from '../+state/search.action';
+import { AuthenticationServiceService } from '../authentication-service.service';
 
 import { ISearchFilter } from '../model/search-filter.model';
 
@@ -22,7 +25,9 @@ export class SearchComponent implements OnInit {
 
   defaultMinDate: Date;
 
-  constructor() {
+  constructor(public authenticationServiceService: AuthenticationServiceService, private store: Store) {
+    this.authenticationServiceService.login();
+
   }
 
   ngOnInit() {
@@ -50,6 +55,16 @@ export class SearchComponent implements OnInit {
   }
 
   handleSearch(formValues: any) {
+    const flightSearch = {
+      origin: this.departureAirportCode.value,
+      departureDate: null,
+      oneWay: true,
+      duration: null,
+      nonStop: true,
+      maxPrice: null,
+      viewBy: null
+    }
+    this.store.dispatch(new GetFlightList(flightSearch));
     if (this.searchForm.valid) {
       this.searchClick.emit(formValues);
     }
