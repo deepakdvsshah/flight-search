@@ -40,7 +40,6 @@ export class SearchComponent implements OnInit {
     this.returnDate = new FormControl(this.searchFilter ? new Date(this.searchFilter.returnDate) : '',
       [Validators.required]);
 
-    // this.defaultMinDate = this.moment().toDate();
 
     this.searchForm = new FormGroup({
       departureAirportCode: this.departureAirportCode,

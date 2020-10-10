@@ -8,11 +8,11 @@ import { RouterModule } from '@angular/router';
 import { appRoutes } from './app.routes'
 import { MaterialModule } from '@flight-search/shared/search';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [BrowserModule,
-    NgxsModule.forRoot([]), MaterialModule,
+    NgxsModule.forRoot([]),
+    MaterialModule,
     NgxsReduxDevtoolsPluginModule.forRoot(),
     RouterModule.forRoot(appRoutes, { initialNavigation: 'enabled', useHash: true }),
     BrowserAnimationsModule,

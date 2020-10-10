@@ -16,7 +16,7 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field class="flight-search-date">
-            <input matInput [matDatepicker]="departureDatePicker" [formControl]="departureDate | date:'yyyy-MM-dd'"
+            <input matInput [matDatepicker]="departureDatePicker" [formControl]="departureDate"
               placeholder="Departure date" [min]="defaultMinDate">
             <mat-datepicker-toggle matSuffix [for]="departureDatePicker"></mat-datepicker-toggle>
             <mat-error *ngIf="departureDate.hasError('required')">

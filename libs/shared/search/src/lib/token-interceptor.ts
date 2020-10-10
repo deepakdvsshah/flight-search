@@ -12,12 +12,13 @@ import { Observable } from 'rxjs';
 export class TokenInterceptor implements HttpInterceptor {
     constructor(public auth: AuthenticationServiceService) { }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-        request = request.clone({
-            setHeaders: {
-                Authorization: `Bearer qPSK0AhuJVxSYNlTzdccU6u7VdYO`
-            }
-        });
+        if (!request.url.includes("token", 0)) {
+            request = request.clone({
+                setHeaders: {
+                    Authorization: `Bearer ${this.auth.getToken()}`
+                }
+            });
+        }
         return next.handle(request);
     }
 }
