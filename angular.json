@@ -1,0 +1,175 @@
+{
+  "version": 1,
+  "projects": {
+    "flight-search": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/flight-search",
+      "sourceRoot": "apps/flight-search/src",
+      "prefix": "flight-search",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/flight-search",
+            "index": "apps/flight-search/src/index.html",
+            "main": "apps/flight-search/src/main.ts",
+            "polyfills": "apps/flight-search/src/polyfills.ts",
+            "tsConfig": "apps/flight-search/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/flight-search/src/favicon.ico",
+              "apps/flight-search/src/assets"
+            ],
+            "styles": ["apps/flight-search/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/flight-search/src/environments/environment.ts",
+                  "with": "apps/flight-search/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "flight-search:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "flight-search:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "flight-search:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/flight-search/tsconfig.app.json",
+              "apps/flight-search/tsconfig.spec.json",
+              "apps/flight-search/tsconfig.editor.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/flight-search/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/flight-search/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "flight-search-e2e": {
+      "root": "apps/flight-search-e2e",
+      "sourceRoot": "apps/flight-search-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/flight-search-e2e/cypress.json",
+            "tsConfig": "apps/flight-search-e2e/tsconfig.e2e.json",
+            "devServerTarget": "flight-search:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "flight-search:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/flight-search-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/flight-search-e2e/**/*"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "analytics": false
+  },
+  "schematics": {
+    "@nrwl/workspace": {
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/cypress": {
+      "cypress-project": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/node": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/nest": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/express": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "flight-search"
+}
