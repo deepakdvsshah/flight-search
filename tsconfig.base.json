@@ -15,7 +15,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@flight-search/shared/search": ["libs/shared/search/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

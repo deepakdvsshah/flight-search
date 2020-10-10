@@ -29,6 +29,9 @@
     "flight-search-e2e": {
       "tags": [],
       "implicitDependencies": ["flight-search"]
+    },
+    "shared-search": {
+      "tags": ["shared:search"]
     }
   }
 }

@@ -25,7 +25,10 @@
               "apps/flight-search/src/favicon.ico",
               "apps/flight-search/src/assets"
             ],
-            "styles": ["apps/flight-search/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/flight-search/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -84,7 +87,10 @@
               "apps/flight-search/tsconfig.spec.json",
               "apps/flight-search/tsconfig.editor.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/flight-search/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/flight-search/**/*"
+            ]
           }
         },
         "test": {
@@ -117,9 +123,47 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/flight-search-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/flight-search-e2e/**/*"]
+            "tsConfig": [
+              "apps/flight-search-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/flight-search-e2e/**/*"
+            ]
           }
+        }
+      }
+    },
+    "shared-search": {
+      "projectType": "library",
+      "root": "libs/shared/search",
+      "sourceRoot": "libs/shared/search/src",
+      "prefix": "flight-search",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/search/tsconfig.lib.json",
+              "libs/shared/search/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/search/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/search/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
         }
       }
     }
