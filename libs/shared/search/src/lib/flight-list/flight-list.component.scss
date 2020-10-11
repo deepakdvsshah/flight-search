@@ -9,7 +9,11 @@
   -o-transform: rotate(90deg);
   transform: rotate(90deg);
 }
-
+.one-way-locations-icon {
+  padding-left: 12px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
 section div:nth-child(1),
 section div:nth-child(3) {
   color: rgb(255, 0, 43);

@@ -8,19 +8,19 @@
       </div>
     </div>
     <div fxFlex.gt-xs="30%">
-      <div class="summary-departtime">
+      <div class="summary-depart-time">
         <span><strong>Departure</strong></span>
-        <div>{{ searchFilter.departureDate  }}</div>
+        <div>{{ searchFilter.departureDate  | date }}</div>
       </div>
     </div>
     <div fxFlex.gt-xs="30%">
-      <div class="summary-returntime">
+      <div *ngIf="searchFilter.returnDate | date " class="summary-return-time">
         <span><strong>Return</strong></span>
-        <div>{{ searchFilter.returnDate  }}</div>
+        <div>{{ searchFilter.returnDate | date }}</div>
       </div>
     </div>
     <div fxFlex.gt-xs="10%">
-      <div class="summary-editsearch">
+      <div class="summary-edit-search">
         <button mat-mini-fab (click)="handleEdit()">
           <mat-icon>edit</mat-icon>
         </button>

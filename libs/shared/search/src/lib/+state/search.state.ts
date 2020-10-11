@@ -65,6 +65,6 @@ export class FlightSearchState {
   */
     @Action(GetFlightListFail)
     getFlightListFail(ctx: StateContext<FlightSearchStateModel>, { err }) {
-        return ctx.patchState({ FlightSearchFail: err.error.errors[0].detail || err.error.errors[0].title });
+        return ctx.patchState({ FlightSearchFail: err.error.errors[0].title || err.error.errors[0].detail });
     }
 }
