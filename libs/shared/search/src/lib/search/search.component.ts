@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
-import { GetFlightList } from '../+state/search.action';
+import { GetAccessToken, GetFlightList } from '../+state/search.action';
 import { AuthenticationServiceService } from '../authentication-service.service';
 import * as moment from 'moment';
 import { ISearchFilter } from '../model/search-filter.model';
@@ -32,18 +32,10 @@ export class SearchComponent implements OnInit {
   maxPrice: number = null;
 
   constructor(public authenticationServiceService: AuthenticationServiceService, private store: Store, private formBuilder: FormBuilder) {
-    this.authenticationServiceService.login();
-
+    this.store.dispatch(new GetAccessToken());
   }
 
   ngOnInit() {
-    this.searchForm = this.formBuilder.group({
-      departureAirportCode: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(3)]],
-      returnAirportCode: [null],
-      departureDate: [null, [Validators.required]],
-      returnDate: [null]
-    });
-
     this.departureAirportCode = new FormControl(this.searchFilter ? this.searchFilter.departureAirportCode : '',
       [Validators.required, Validators.minLength(3), Validators.maxLength(3)]);
     this.returnAirportCode = new FormControl(this.searchFilter ? this.searchFilter.returnAirportCode : '',
@@ -71,17 +63,16 @@ export class SearchComponent implements OnInit {
     this.closeClick.emit();
   }
 
-  handleSearch(formValues: any) {
+  handleSearch(formValues: any): void {
     const flightSearch = {
-      origin: this.departureAirportCode.value,
+      origin: this.departureAirportCode.value + '',
       departureDate: moment(this.departureDate.value).format('YYYY-MM-DD'),
-      oneWay: this.oneWay.value,
+      oneWay: this.oneWay.value ? true : false,
       duration: moment(this.returnDate.value).diff(moment(this.departureDate.value), 'days') || null,
-      nonStop: this.nonStop.value,
+      nonStop: this.nonStop.value ? true : false,
       maxPrice: this.maxPrice,
       viewBy: this.selectedItem
     }
-
     if (this.searchForm.valid) {
       this.store.dispatch(new GetFlightList(flightSearch));
       this.searchClick.emit(formValues);

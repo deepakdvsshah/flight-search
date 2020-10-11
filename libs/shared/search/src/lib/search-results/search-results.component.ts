@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
 import { ISearchFilter } from '../model/search-filter.model';
-import { PageEvent } from '@angular/material/paginator';
 import { Select } from '@ngxs/store';
 import { FlightSearchState, FlightSearchStateModel } from '../+state/search.state';
 import { Observable } from 'rxjs';
@@ -19,11 +17,10 @@ export class SearchResultsComponent implements OnInit {
   private paramsSubscription: any;
   searchResult: any[];
 
-  constructor(private router: Router, private route: ActivatedRoute,
-  ) {
+  constructor(private router: Router, private route: ActivatedRoute) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.searchResult = [];
     this.paramsSubscription = this.route.queryParams.subscribe(params => {
       this.searchFilter = {
@@ -34,16 +31,26 @@ export class SearchResultsComponent implements OnInit {
       };
     });
   }
-
-  handleEditClick() {
+  /**
+   * edit button click
+   * @returns void
+   */
+  handleEditClick(): void {
     this.editMode = true;
   }
-
-  handleCloseClick() {
+  /**
+   * close search button
+   * @returns void
+   */
+  handleCloseClick(): void {
     this.editMode = false;
   }
-
-  handleSearchClick(filter: ISearchFilter) {
+  /**
+   * flight search button
+   * @param  {ISearchFilter} filter
+   * @returns void
+   */
+  handleSearchClick(filter: ISearchFilter): void {
     this.searchFilter.departureAirportCode = filter.departureAirportCode;
     this.searchFilter.returnAirportCode = filter.returnAirportCode;
     this.searchFilter.departureDate = filter.departureDate;
