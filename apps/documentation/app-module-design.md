@@ -7,7 +7,7 @@
 
 | **Version Number** |  **Date**  | **Edited by** | **Change/Comments**  |
 | :----------------: | :--------: | :-----------: | :------------------: |
-|        1.0         | 11-09-2020 |  Deepak Shah  | Intial Documentation |
+|        1.0         | 11-10-2020 |  Deepak Shah  | Intial Documentation |
 
 ## 1.0 Document Purpose and target group
 
@@ -20,7 +20,17 @@ This is a application which help travelers discover their next destination by fi
 ```
 ## Project Overview
 
-![](media/documentation_overview.PNG)
+**Application Overview**
+
+![](media/module.PNG)
+
+**App Module Overview**
+
+![](media/app_module.PNG)
+
+**Search Module Overview**
+
+![](media/shared_module.PNG)
 
 ## Dependency
 
