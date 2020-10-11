@@ -21,6 +21,6 @@ ng serve
 
 # Project Documentation
 
-**Module design**
+[Module design](apps/documentation/app-module-technical.md)
 
-[Flight Search](apps/documentation/app-technical.md)
+[App Technical](apps/documentation/app-technical.md)
