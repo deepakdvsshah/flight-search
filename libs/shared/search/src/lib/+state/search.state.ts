@@ -87,7 +87,7 @@ export class FlightSearchState {
      * @param  {} {err}
      */
     @Action(GetAccessToken)
-    GetAccessToken(ctx: StateContext<FlightSearchStateModel>, { err }) {
+    GetAccessToken(ctx: StateContext<FlightSearchStateModel>) {
         const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
         let body = new HttpParams();
         body = body.set('grant_type', 'client_credentials');
@@ -96,6 +96,7 @@ export class FlightSearchState {
         this.http.post<any>('https://test.api.amadeus.com/v1/security/oauth2/token', body, {
             headers: headers
         }).subscribe(data => {
+
             ctx.patchState({
                 accessToken: data.access_token
             });

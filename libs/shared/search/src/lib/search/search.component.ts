@@ -1,8 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter, Inject } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
-import { GetAccessToken, GetFlightList } from '../+state/search.action';
-import { AuthenticationServiceService } from '../authentication-service.service';
+import { GetFlightList } from '../+state/search.action';
 import * as moment from 'moment';
 import { ISearchFilter } from '../model/search-filter.model';
 
@@ -31,8 +30,7 @@ export class SearchComponent implements OnInit {
   ];
   maxPrice: number = null;
 
-  constructor(public authenticationServiceService: AuthenticationServiceService, private store: Store, private formBuilder: FormBuilder) {
-    this.store.dispatch(new GetAccessToken());
+  constructor(private store: Store) {
   }
 
   ngOnInit() {
@@ -44,25 +42,40 @@ export class SearchComponent implements OnInit {
       [Validators.required]);
     this.returnDate = new FormControl(this.searchFilter ? this.searchFilter.returnDate !== '' ? new Date(this.searchFilter.returnDate) : '' : '',
     );
-    this.oneWay = new FormControl(false);
-    this.nonStop = new FormControl(false);
+    this.oneWay = new FormControl(this.searchFilter ? this.searchFilter.oneWay : false);
+    this.nonStop = new FormControl(this.searchFilter ? this.searchFilter.nonStop : false);
 
     this.defaultMinDate = moment().toDate();
     this.searchForm = new FormGroup({
       departureAirportCode: this.departureAirportCode,
       returnAirportCode: this.returnAirportCode,
       departureDate: this.departureDate,
-      returnDate: this.returnDate
+      returnDate: this.returnDate,
+      oneWay: this.oneWay,
+      nonStop: this.nonStop
     });
 
   }
-  updatePrice(event) {
+  /**
+   * update price
+   * @param  {} event
+   * @returns void
+   */
+  updatePrice(event): void {
     this.maxPrice = event.value;
   }
-  handleClose() {
+  /**
+   * close event
+   * @returns void
+   */
+  handleClose(): void {
     this.closeClick.emit();
   }
-
+  /**
+   * search button
+   * @param  {any} formValues
+   * @returns void
+   */
   handleSearch(formValues: any): void {
     const flightSearch = {
       origin: this.departureAirportCode.value + '',
@@ -76,7 +89,6 @@ export class SearchComponent implements OnInit {
     if (this.searchForm.valid) {
       this.store.dispatch(new GetFlightList(flightSearch));
       this.searchClick.emit(formValues);
-
     }
   }
 }

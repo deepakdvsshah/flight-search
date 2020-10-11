@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { FlightSearchState, FlightSearchStateModel } from '../+state/search.state';
@@ -12,6 +12,4 @@ export class FlightListComponent {
   @Select(FlightSearchState.getFailSearch) searchFail$: Observable<FlightSearchStateModel>;
   @Input() flightLists: any;
   constructor() { }
-
-
 }

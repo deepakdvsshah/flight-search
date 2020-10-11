@@ -28,6 +28,8 @@ export class SearchResultsComponent implements OnInit {
         returnAirportCode: params['returnAirportCode'],
         departureDate: new Date(params['departureDate']),
         returnDate: params['returnDate'] !== '' ? new Date(params['returnDate']) : '',
+        oneWay: params['oneWay'] === 'true' ? true : false,
+        nonStop: params['nonStop'] === 'true' ? true : false,
       };
     });
   }
@@ -55,6 +57,8 @@ export class SearchResultsComponent implements OnInit {
     this.searchFilter.returnAirportCode = filter.returnAirportCode;
     this.searchFilter.departureDate = filter.departureDate;
     this.searchFilter.returnDate = filter.returnDate;
+    this.searchFilter.oneWay = filter.oneWay;
+    this.searchFilter.nonStop = filter.nonStop;
     this.router.navigate(['/search/results'], {
       queryParams: this.searchFilter
     });
