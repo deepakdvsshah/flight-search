@@ -21,6 +21,6 @@ ng serve
 
 # Project Documentation
 
-[Module design](apps/documentation/app-module-technical.md)
+[Module design](apps/documentation/app-module-design.md)
 
 [App Technical](apps/documentation/app-technical.md)
