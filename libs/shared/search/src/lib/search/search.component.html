@@ -61,12 +61,17 @@
     </div>
   </div>
   <div>
-    <div fxLayout.xs="column" fxLayout.gt-xs="row" fxLayoutAlign="center">
+    <div fxLayout.xs="column" fxLayout.gt-xs="row" fxLayoutAlign="center" *ngIf="showClose">
       <div fxFlex.xs="1" fxFlex.gt-xs="30%" class="flight-search-button">
         <button type="submit" mat-raised-button color="primary" fxFlex.xs>Search</button>
       </div>
-      <div fxFlex.xs="1" fxFlex.gt-xs="30%" class="flight-search-button" *ngIf="showClose">
+      <div fxFlex.xs="1" fxFlex.gt-xs="30%" class="flight-search-button">
         <button type="button" mat-raised-button (click)="handleClose()" fxFlex.xs>Close</button>
+      </div>
+    </div>
+    <div fxLayout.xs="column" fxLayout.gt-xs="row" fxLayoutAlign="center" *ngIf="!showClose">
+      <div fxFlex.xs="1" fxFlex.gt-xs="10%" class="flight-search-button">
+        <button type="submit" mat-raised-button color="primary" fxFlex.xs>Search</button>
       </div>
     </div>
   </div>

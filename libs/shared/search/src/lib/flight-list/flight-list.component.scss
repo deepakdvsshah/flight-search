@@ -10,6 +10,16 @@
   transform: rotate(90deg);
 }
 
-.content {
-  width: 30%;
+section div:nth-child(1),
+section div:nth-child(3) {
+  color: rgb(255, 0, 43);
+  font-size: 30px;
+}
+
+section div:nth-child(1) {
+  margin-top: 20px;
+}
+
+section div:nth-child(2) {
+  width: 50%;
 }

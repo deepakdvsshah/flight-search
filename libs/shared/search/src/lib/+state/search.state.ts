@@ -1,23 +1,25 @@
-import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { GetFlightList } from '../+state/search.action';
+import { State, Action, StateContext, Selector, Store } from '@ngxs/store';
+import { GetFlightList, GetFlightListFail } from '../+state/search.action';
 import { Injectable } from '@angular/core';
 import { FlightDestinationsService } from '@openapi/flightSearch'
-import { tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
 export class FlightSearchStateModel {
     flightList: [];
+    FlightSearchFail: any
 }
 
 @State<FlightSearchStateModel>({
     name: 'addProduct',
     defaults: {
         flightList: [],
+        FlightSearchFail: ''
     }
 })
 @Injectable()
 export class FlightSearchState {
 
-    constructor(public flightDestinationsService: FlightDestinationsService) {
+    constructor(public flightDestinationsService: FlightDestinationsService, private store: Store) {
     }
 
     /**
@@ -27,6 +29,14 @@ export class FlightSearchState {
     @Selector()
     static getFlightList(state: FlightSearchStateModel) {
         return state.flightList;
+    }
+    /**
+    * @param  {FlightSearchStateModel} 
+    * return add product
+    */
+    @Selector()
+    static getFailSearch(state: FlightSearchStateModel) {
+        return state.FlightSearchFail;
     }
 
 
@@ -41,8 +51,20 @@ export class FlightSearchState {
             const state = getState();
             setState({
                 ...state,
-                flightList: result.data
+                flightList: result.data,
+                FlightSearchFail: false
             });
-        }));
+        }),
+            catchError((err: any) => {
+                return this.store.dispatch(new GetFlightListFail(err));
+            })
+        );
+    }
+    /**
+  * @param  {} actions.RegisterEnrolSuccess
+  */
+    @Action(GetFlightListFail)
+    getFlightListFail(ctx: StateContext<FlightSearchStateModel>, { err }) {
+        return ctx.patchState({ FlightSearchFail: err.error.errors[0].detail || err.error.errors[0].title });
     }
 }

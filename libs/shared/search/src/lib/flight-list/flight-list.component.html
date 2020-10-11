@@ -1,3 +1,11 @@
+<section *ngIf="searchFail$ |async" fxLayout="column wrap" fxLayoutGap="60px" fxLayoutAlign="center center">
+  <div fxFlex>
+    {{searchFail$ |async}}
+  </div>
+  <div fxFlex>
+    <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
+  </div>
+</section>
 <div *ngFor="let flightList of flightLists">
   <div class="flightList">
     <mat-card>
@@ -5,18 +13,27 @@
         <div fxLayout.gt-sm="row" fxLayout.sm="column" fxLayout.xs="column">
           <div fxFlex.gt-sm="40%">
             <img [src]="flightList.AirlineLogoAddress" />
-            <span class="mat-subheading-2">{{flightList.type}}</span>
+            <!-- <span class="mat-subheading-2">{{flightList.type}}</span> -->
             <div class="summary-locations">
               <span>{{ flightList.origin }}</span>
               <mat-icon class="summary-locations-icon">import_export</mat-icon>
               <span>{{ flightList.destination }}</span>
             </div>
           </div>
-          <div fxFlex.gt-sm="40%" fxFlex.sm="1" fxFlex.xs="1" fxLayoutAlign.gt-sm="end">
+          <!-- <div fxFlex.gt-sm="40%" fxFlex.sm="1" fxFlex.xs="1" fxLayoutAlign.gt-sm="end">
             <span class="mat-subheading-2">{{flightList.price.total | currency}}</span>
-          </div>
+          </div> -->
         </div>
         <div fxLayout.gt-sm="row" fxLayout.sm="column" fxLayout.xs="column">
+          <div fxFlex.gt-sm="40%">
+            <div>
+              <strong>Price</strong>
+            </div>
+            <div>
+              {{flightList.price.total | currency}}
+            </div>
+
+          </div>
           <div fxFlex.gt-sm="40%">
             <div>
               <strong>Departure Date</strong>

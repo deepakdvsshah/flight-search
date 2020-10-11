@@ -3,7 +3,7 @@
     <div fxFlex.gt-xs="30%">
       <div class="summary-locations">
         <span>{{ searchFilter.departureAirportCode }}</span>
-        <mat-icon class="summary-locations-icon">import_export</mat-icon>
+        <mat-icon *ngIf="searchFilter.returnAirportCode" class="summary-locations-icon">import_export</mat-icon>
         <span>{{ searchFilter.returnAirportCode }}</span>
       </div>
     </div>

@@ -34,7 +34,7 @@ export class SearchComponent implements OnInit {
     this.departureAirportCode = new FormControl(this.searchFilter ? this.searchFilter.departureAirportCode : '',
       [Validators.required, Validators.minLength(3), Validators.maxLength(3)]);
     this.returnAirportCode = new FormControl(this.searchFilter ? this.searchFilter.returnAirportCode : '',
-      [Validators.required, Validators.minLength(3), Validators.maxLength(3)]);
+      [Validators.minLength(3), Validators.maxLength(3)]);
     this.departureDate = new FormControl(this.searchFilter ? new Date(this.searchFilter.departureDate) : '',
       [Validators.required]);
     this.returnDate = new FormControl(this.searchFilter ? new Date(this.searchFilter.returnDate) : '',
@@ -58,7 +58,7 @@ export class SearchComponent implements OnInit {
       origin: this.departureAirportCode.value,
       departureDate: moment(this.departureDate.value).format('YYYY-MM-DD'),
       oneWay: false,
-      duration: moment(this.returnDate.value).diff(moment(this.departureDate.value), 'days'),
+      duration: moment(this.returnDate.value).diff(moment(this.departureDate.value), 'days') || null,
       nonStop: true,
       maxPrice: null,
       viewBy: null
