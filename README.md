@@ -18,3 +18,9 @@ compodoc -p tsconfig.base.json
 # Run Project
 npm install
 ng serve
+
+# Project Documentation
+
+**Module design**
+
+[Flight Search](apps/documentation/app-technical.md)
