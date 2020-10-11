@@ -1,0 +1,1 @@
+var ROUTES_INDEX = {"name":"<root>","kind":"module","className":"AppModule","children":[{"name":"searchRoutes","filename":"libs/shared/search/src/lib/search.routs.ts","module":"SharedSearchModule","children":[{"path":"results","component":"SearchResultsComponent"}],"kind":"module"}]}
