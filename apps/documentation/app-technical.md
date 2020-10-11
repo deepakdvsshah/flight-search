@@ -1,7 +1,7 @@
 ---
 ---
 
-# Add/Update Product
+# Flight Search
 
 ## Document History
 
@@ -39,4 +39,4 @@ After intigration of search feature we can do flight searching.
 
 App contains one feature which mentioned at below links:
 
-[Product list](../../libs/shared/search/documentation/flight-search-technical.md)
+[Flight Search](../../libs/shared/search/documentation/flight-search-technical.md)

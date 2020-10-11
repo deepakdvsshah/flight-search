@@ -72,4 +72,3 @@ The below layout shows error message view.
 |          MANDATORY DATA MISSING          | Depends on backend |
 | ITEM/DATA NOT FOUND OR DATA NOT EXISTING | Depends on backend |
 |             Unexpected error             | Depends on backend |
-|                                          | Depends on backend |
